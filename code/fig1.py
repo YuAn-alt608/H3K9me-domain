@@ -42,7 +42,7 @@ axA.set_yticklabels(FAM, fontsize=6.1)
 for i in range(M.shape[0]):
     for j in range(M.shape[1]):
         v = M[i, j]
-        axA.text(j, i, "%d" % round(v * 100), ha="center", va="center", fontsize=5.3,
+        axA.text(j, i, "%.2f" % v, ha="center", va="center", fontsize=5.0,
                  color="white" if v > 0.42 else "#333333")
 axA.tick_params(length=1.5, pad=1.5)
 for s in axA.spines.values():
@@ -77,8 +77,8 @@ order = [("CBX3", BLUE, "CBX3 (HP1γ)"), ("CBX5", BLUE, "CBX5 (HP1α)"),
          ("CBX1", BLUE, "CBX1 (HP1β)"), ("INPUT", "#4D4D4D", "ChIP input"),
          ("ETS1", "#4D4D4D", "ETS1"), ("POLR2A", "#4D4D4D", "POLR2A"),
          ("NFYB", "#4D4D4D", "NFYB"), ("TNRC18", ORANGE, "TNRC18")]
-lab_y = {"CBX3": 0.512, "CBX5": 0.455, "CBX1": 0.417, "ETS1": 0.301,
-         "INPUT": 0.267, "POLR2A": 0.192, "NFYB": 0.172, "TNRC18": 0.060}
+lab_y = {"CBX3": 0.512, "CBX5": 0.455, "CBX1": 0.417, "ETS1": 0.330,
+         "INPUT": 0.285, "POLR2A": 0.215, "NFYB": 0.168, "TNRC18": 0.060}
 for t, col, lab in order:
     y = foc[KEY[t]]
     yl = lab_y[t]

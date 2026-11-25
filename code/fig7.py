@@ -48,7 +48,7 @@ axA.set_xlim(-0.32, 0.16)
 axA.set_xticks([-0.3, -0.15, 0, 0.1])
 axA.set_xlabel("median difference, mutant − WT (log$_2$)", fontsize=6.0, labelpad=1)
 axA.text(-0.32, 1.255, "A", transform=axA.transAxes, fontsize=9, fontweight="bold", va="top")
-axA.text(-0.22, 1.255, "Every contrast has a global offset", transform=axA.transAxes,
+axA.text(-0.22, 1.255, "Global offset of each contrast", transform=axA.transAxes,
          fontsize=7.0, fontweight="bold", va="top")
 axA.text(0.0, -0.30, "bars = 100 kb block bootstrap", transform=axA.transAxes,
          fontsize=5.2, color=DGREY)
@@ -82,7 +82,7 @@ axB.set_yticks([-0.2, 0, 0.5, 1.0])
 axB.legend(loc="upper left", bbox_to_anchor=(-0.03, 1.04), fontsize=5.6, ncol=3,
            handlelength=0.8, borderpad=0.1, columnspacing=0.7, frameon=False)
 axB.text(-0.185, 1.255, "B", transform=axB.transAxes, fontsize=9, fontweight="bold", va="top")
-axB.text(-0.105, 1.255, "The mark moves, the effectors do not",
+axB.text(-0.105, 1.255, "Family-level differences after referencing",
          transform=axB.transAxes, fontsize=7.0, fontweight="bold", va="top")
 
 # ---------------- C knockout, against an unperturbed control ----------------
@@ -111,7 +111,7 @@ axC.axvline(0, color="#4A4A4A", lw=0.7)
 axC.set_yticks(ypos)
 axC.set_yticklabels(f3, fontsize=6.0)
 axC.set_ylim(-0.62, len(f3) - 0.25)
-axC.set_xlim(-1.15, 1.30)
+axC.set_xlim(-1.55, 1.30)
 axC.set_xticks([-1.0, -0.5, 0, 0.5, 1.0])
 axC.set_xlabel("TNRC18 element-over-flank (log$_2$)", fontsize=6.0, labelpad=2)
 axC.legend(loc="lower center", bbox_to_anchor=(0.46, 1.005), fontsize=4.2, ncol=3,
