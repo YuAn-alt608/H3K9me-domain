@@ -12,16 +12,16 @@ from matplotlib.patches import Patch
 style(plt)
 rng = np.random.default_rng(11)
 
-cp = pd.read_csv(os.path.join(TAB, "d7_copies.tsv.gz"), sep="\t")
+cp = pd.read_csv(r"D:/NewBeginning/BIOinformation/Age2.3/03_results/tables/d7_copies.tsv.gz", sep="\t")
 cols = ["dnase", "k9"] + [KEY[t] for t in TRACKS]
 sd = cp.groupby("repName")[cols].std(ddof=1).loc[FAM]
 sd.columns = [{"dnase": "DNase", "k9": "H3K9me3"}.get(x, x) for x in sd.columns]
 
 rel = r("d9_reliability.tsv").pivot(index="family", columns="track", values="reliability").loc[FAM]
-rel.columns = [{"k9": "H3K9me3", "tnrc18": "TNRC18", "INPUT": "ChIP input"}.get(c, c) for c in rel.columns]
+rel.columns = [{"k9": "H3K9me3", "tnrc18": "TNRC18", "INPUT": "ChIP-seq input"}.get(c, c) for c in rel.columns]
 
 rc = r("d9_rho_corrected.tsv").pivot(index="family", columns="partner", values="rho_obs").loc[FAM]
-rc.columns = [{"k9": "H3K9me3", "dnase": "DNase", "INPUT": "ChIP input"}.get(c, c) for c in rc.columns]
+rc.columns = [{"k9": "H3K9me3", "dnase": "DNase", "INPUT": "ChIP-seq input"}.get(c, c) for c in rc.columns]
 
 ft = r("d7_family_track.tsv").set_index("family").loc[FAM]
 cc = r("tnrc18_crosscell.tsv")
@@ -32,8 +32,8 @@ k9frac = 100 * ft.k9_pos / ft.n
 cs = r("tnrc18_crosscell_summary.tsv")
 
 fig = plt.figure(figsize=(6.0, 6.45))
-gs = fig.add_gridspec(4, 2, left=0.105, right=0.985, top=0.940, bottom=0.078,
-                      hspace=0.92, wspace=0.42, height_ratios=[1, 1, 0.92, 0.90])
+gs = fig.add_gridspec(4, 2, left=0.155, right=0.985, top=0.940, bottom=0.078,
+                      hspace=0.92, wspace=0.46, height_ratios=[1, 1, 0.92, 0.90])
 
 # ---------------- A within-family SD ----------------
 axA = fig.add_subplot(gs[0, 0])
@@ -108,8 +108,8 @@ axD.text(0.5045, 49.5, "chance", fontsize=5.6, color="#6E6E6E", ha="left", va="t
 axD.scatter(auc.values, k9frac.values, s=16, facecolor=ORANGE, edgecolor="white",
             linewidth=0.5, zorder=3)
 LAB = {"LTR12C": (-8, 9), "MER41B": (-26, 6), "MER11A": (-28, 4), "MER41A": (3, 6),
-       "MER11B": (3, 6), "MER11C": (-32, -2), "L1PA5": (-26, 3), "L1PA4": (-30, -2),
-       "L1PA6": (5, 2), "L1PA3": (-32, -3)}
+       "MER11B": (3, 6), "MER11C": (-32, -2), "L1PA5": (-26, 4), "L1PA4": (-34, 6),
+       "L1PA6": (5, 2), "L1PA3": (-34, -7)}
 for f in FAM:
     dx, dy = LAB[f]
     axD.annotate(f, (auc[f], k9frac[f]), xytext=(dx, dy), textcoords="offset points",
@@ -213,5 +213,5 @@ axF.text(0.000, 1.46, "Genome-wide co-localisation",
 axF.text(0.985, 0.05, "bars: raw   circles: control-normalised", transform=axF.transAxes,
          fontsize=5.3, color=DGREY, ha="right", va="bottom")
 
-fig.savefig(os.path.join("..", "figures", "fig2.png"), dpi=450, facecolor="white")
+fig.savefig("fig2.png", dpi=450, facecolor="white")
 print("fig2 written")

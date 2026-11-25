@@ -4,16 +4,16 @@ import os
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TAB = os.path.join(ROOT, "data", "tables")
-TAB232 = TAB
-BM = TAB
+ROOT = r"D:/NewBeginning/BIOinformation/Age2.3"
+TAB = os.path.join(ROOT, "03_results", "tables")
+TAB232 = os.path.join(ROOT, "Age2.3.2", "03_results", "tables")
+BM = os.path.join(ROOT, "05_paper", "03_results")
 
 FAM = ["L1PA3", "L1PA4", "L1PA5", "L1PA6", "LTR12C",
        "MER11A", "MER11B", "MER11C", "MER41A", "MER41B"]
 TRACKS = ["CBX3", "CBX5", "CBX1", "INPUT", "ETS1", "POLR2A", "NFYB", "TNRC18"]
 TRACK_LAB = {"CBX3": "CBX3 (HP1γ)", "CBX5": "CBX5 (HP1α)", "CBX1": "CBX1 (HP1β)",
-             "INPUT": "ChIP input", "ETS1": "ETS1", "POLR2A": "POLR2A",
+             "INPUT": "ChIP-seq input", "ETS1": "ETS1", "POLR2A": "POLR2A",
              "NFYB": "NFYB", "TNRC18": "TNRC18"}
 # internal table names are lower case for tnrc18
 KEY = {"CBX3": "CBX3", "CBX5": "CBX5", "CBX1": "CBX1", "INPUT": "INPUT",

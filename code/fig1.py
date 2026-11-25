@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Figure 1, redrawn from the source tables."""
-import os
 import numpy as np
 import pandas as pd
 import matplotlib
@@ -26,17 +25,17 @@ orc.columns = TRACKS
 
 pk = r("d7_peak_rho.tsv").pivot(index="family", columns="track", values="rho_peak").loc[FAM]
 
-fig = plt.figure(figsize=(6.0, 4.97))
-gs = fig.add_gridspec(2, 2, left=0.105, right=0.985, top=0.915, bottom=0.105,
-                      hspace=0.66, wspace=0.62, height_ratios=[1, 0.82])
+fig = plt.figure(figsize=(6.0, 5.12))
+gs = fig.add_gridspec(2, 2, left=0.105, right=0.985, top=0.915, bottom=0.135,
+                      hspace=0.78, wspace=0.62, height_ratios=[1, 0.78])
 
 # ---------------- A heatmap ----------------
 axA = fig.add_subplot(gs[0, 0])
 M = rho.values
 im = axA.imshow(M, cmap="Blues", vmin=0, vmax=0.73, aspect="auto")
 axA.set_xticks(range(len(TRACKS)))
-axA.set_xticklabels([t if t != "INPUT" else "ChIP\ninput" for t in TRACKS],
-                    rotation=52, ha="right", fontsize=5.9)
+axA.set_xticklabels([t if t != "INPUT" else "ChIP-seq\ninput" for t in TRACKS],
+                    rotation=90, ha="center", va="top", fontsize=6.2)
 axA.set_yticks(range(len(FAM)))
 axA.set_yticklabels(FAM, fontsize=6.1)
 for i in range(M.shape[0]):
@@ -74,7 +73,7 @@ axB.boxplot([null.values], positions=[0.30], widths=0.13, showfliers=False,
 axB.axhline(null.median(), color="#9A9A9A", lw=0.6, ls=(0, (3, 2.5)), zorder=1)
 
 order = [("CBX3", BLUE, "CBX3 (HP1γ)"), ("CBX5", BLUE, "CBX5 (HP1α)"),
-         ("CBX1", BLUE, "CBX1 (HP1β)"), ("INPUT", "#4D4D4D", "ChIP input"),
+         ("CBX1", BLUE, "CBX1 (HP1β)"), ("INPUT", "#4D4D4D", "ChIP-seq input"),
          ("ETS1", "#4D4D4D", "ETS1"), ("POLR2A", "#4D4D4D", "POLR2A"),
          ("NFYB", "#4D4D4D", "NFYB"), ("TNRC18", ORANGE, "TNRC18")]
 lab_y = {"CBX3": 0.512, "CBX5": 0.455, "CBX1": 0.417, "ETS1": 0.330,
@@ -88,11 +87,11 @@ for t, col, lab in order:
     if abs(yl - y) > 0.004:
         axB.annotate("", xy=(1.015, y), xytext=(1.015, yl),
                      arrowprops=dict(arrowstyle="-", color=col, lw=0.45, alpha=0.75))
-axB.set_xlim(0.10, 1.70)
+axB.set_xlim(0.10, 1.98)
 axB.set_ylim(0.030, 0.575)
 axB.set_xticks([0.30])
 axB.set_xticklabels(["36 random\nTF tracks"], fontsize=6.0)
-axB.set_ylabel("mean within-family ρ\nwith H3K9me3", fontsize=6.5, labelpad=2)
+axB.set_ylabel("mean within-family Spearman\ncorrelation with H3K9me3", fontsize=6.2, labelpad=2)
 axB.set_yticks([0.1, 0.2, 0.3, 0.4, 0.5])
 axB.tick_params(axis="y", labelsize=6.0)
 axB.text(-0.185, 1.135, "B", transform=axB.transAxes, fontsize=9, fontweight="bold", va="top")
@@ -134,7 +133,7 @@ axD.bar(x + w / 2, pk["CBX3"].values, width=w, color=BLUE, label="CBX3 (HP1γ)",
 axD.axhline(0, color="#8C8C8C", lw=0.6)
 axD.set_xticks(x)
 axD.set_xticklabels(FAM, rotation=52, ha="right", fontsize=5.9)
-axD.set_ylabel("within-family ρ, 300 bp maximum", fontsize=6.5, labelpad=2)
+axD.set_ylabel("within-family Spearman\ncorrelation, 300 bp maximum", fontsize=6.2, labelpad=2)
 axD.set_ylim(-0.11, 0.86)
 axD.set_yticks([0.0, 0.2, 0.4, 0.6])
 axD.legend(loc="upper left", bbox_to_anchor=(0.02, 1.00), ncol=1, fontsize=5.8,
@@ -143,5 +142,5 @@ axD.text(-0.215, 1.165, "D", transform=axD.transAxes, fontsize=9, fontweight="bo
 axD.text(-0.135, 1.165, "Window-maximum readout",
          transform=axD.transAxes, fontsize=7.1, fontweight="bold", va="top")
 
-fig.savefig(os.path.join("..", "figures", "fig1.png"), dpi=450, facecolor="white")
+fig.savefig("fig1.png", dpi=450, facecolor="white")
 print("fig1 written")
