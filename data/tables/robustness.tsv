@@ -1,0 +1,12 @@
+result	comparison	n1	n2	estimate	p	note
+D1 all copies	bound-open vs bound-closed, any read	775	1757	0.9610808433705504	0.8022553299196902	any-read rate 0.134 vs 0.139
+D1 |dist_tss|>50kb	bound-open vs bound-closed, any read	391	765	0.8122976083648706	0.3806580626784295	any-read rate 0.077 vs 0.093
+D1 mapp50>0.3	bound-open vs bound-closed, any read	96	271	0.9531914893617022	1.0	any-read rate 0.167 vs 0.173
+D1 antisense fraction	bound-open vs bound-closed	104	244	0.0		median anti/(anti+sense) 0.500 vs 0.500
+D1 alt openness (peak overlap)	bound-open vs bound-closed, any read	26	526	3.0277777777777777	0.014905735071211883	DNase peak overlap replaces the ratio
+D2 external K9 (K562)	peak-based K9 call instead of tissue table	54	7800	4.555023923444976	7.142078343542218e-06	16 of 54 marked copies open
+D2 external K9 (H1)	peak-based K9 call instead of tissue table	2352	5502	0.45477685389445105	6.0816614902519577e-05	28 of 2352 marked copies open
+D2 external K9 (HepG2)	peak-based K9 call instead of tissue table	1559	6295	0.6584980589888894	0.06424467946172065	24 of 1559 marked copies open
+D2 external K9 (A549)	peak-based K9 call instead of tissue table	472	7382	1.6269482052896724	0.00039334637591653687	75 of 472 marked copies open
+D3 leave-one-family-out (K562)	rho(effector rate, open rate)	10	10	0.6606060606060605	0.03758837757140934	range 0.53 to 0.83
+D3 leave-one-family-out (HepG2)	rho(effector rate, open rate)	10	10	0.6121212121212121	0.05997214247725527	range 0.47 to 0.78
